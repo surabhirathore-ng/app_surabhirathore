@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: "nagp-devops-us-develop-lb-service"
+  namespace: "kubernetes-cluster-surabhirathore"
+spec:
+  selector:
+    app: "nagp-devops-us-develop"
+  ports:
+  - port: 80
+    targetPort: 80
+    nodePort: 31112
+  type: LoadBalancer  

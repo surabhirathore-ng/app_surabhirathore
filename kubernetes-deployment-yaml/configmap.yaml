@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nagp-devops-us-develop-configmap
+  namespace: kubernetes-cluster-surabhirathore
+  labels:
+   app: nagp-devops-us-develop
+data:
+  # property-like keys; each key maps to a simple value
+  FILE_URL: "https://kubernetes.io/docs/concepts/configuration/configmap/"
+  FILE_KEY: "1234"
