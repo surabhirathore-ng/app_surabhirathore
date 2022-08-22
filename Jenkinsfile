@@ -35,8 +35,6 @@ pipeline {
       }
     }
 
-    	
-
     stage ("Release artifact") {
            
 
