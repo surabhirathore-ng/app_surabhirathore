@@ -22,17 +22,7 @@ pipeline {
             }
         }
 		
-		stage('Start sonarqube analysis'){
-            
-
-            steps {
-				  echo "Start sonarqube analysis step"
-                  withSonarQubeEnv('Test_Sonar') {
-                   bat "dotnet ${scannerHome}\\SonarScanner.MSBuild.dll begin /k:\"sonar-surabhirathore\""
-                  }
-            }
-        }
-
+		
        stage('Code build') {
       steps {
         //Cleans the output of the project
@@ -43,25 +33,7 @@ pipeline {
         echo "Code Build"
         bat 'dotnet build --configuration Release"'
       }
-    }
-
-    stage('Test Case Execution') {
-      steps {
-        echo "Execute Unit Test"
-        bat "dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=opencover -l:trx;LogFileName=TestFileReport.xml"
-      }
-    }
-
-    stage('Stop SonarQube Analysis') {
-      steps {
-        echo "Stop SonarQube Analysis"
-        withSonarQubeEnv("Test_Sonar") {
-          bat "dotnet ${scannerHome}\\SonarScanner.MSBuild.dll end"
-		}
-		
-    }
-
- }	
+    }       	
 
     stage ("Release artifact") {
            
