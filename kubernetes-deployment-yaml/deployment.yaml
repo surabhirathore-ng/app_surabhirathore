@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nagp-devops-us-master-deployment
+  namespace: kubernetes-cluster-surabhirathore
+  labels:
+    app: nagp-devops-us-master
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: nagp-devops-us-master
+  template:
+    metadata:
+      name: nagp-devops-us-master
+      labels:
+        app: nagp-devops-us-master
+    spec:
+      containers:
+        - name: nagp-devops-us-master-container
+          image: surabhirathore/i-surabhirathore-master
+          envFrom:
+            - secretRef:
+                name: nagp-devops-us-master-secret
+            - configMapRef:
+                name: nagp-devops-us-master-configmap               
